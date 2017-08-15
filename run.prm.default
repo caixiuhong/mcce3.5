@@ -22,6 +22,7 @@ f        step 2: make rotatmers                             (DO_ROTAMERS)
 f        step 3: do energy calculations                     (DO_ENERGY)
 f        step 4: monte carlo sampling                       (DO_MONTE)
 f        step 5: post monte carlo (pka)                     (DO_POSTMCCE)
+f        step 6: analysis                                   (DO_ANALYSIS)
 ==============================================================================
 
 0        sidechain optimization: 0=mcce, 1=P.Comte's GA,    (SIDECHAIN_OPT)
@@ -70,6 +71,7 @@ t		ignore hydrogens in input structure					(IGNORE_INPUT_H)
 
 step 2:
 f        Use specific control (head1.lst) on rotamer making (ROT_SPECIF)
+t        Out ms_gold file fo Microstate selection           (MS_GOLD_OUT)
 f        Rebuild sidechain based on torsion minima          (REBUILD_SC)
 t        Do swap (stereo isotope)                           (ROT_SWAP)
 t        Do rotate?                                         (PACK)
@@ -104,6 +106,8 @@ t        Do relaxation on hydrogens                         (RELAX_H)
 1.0      phi for each step of relaxation                    (RELAX_PHI)
 300      Maximum number of steps of relaxation              (RELAX_NITER)
 0.5      Torque threshold for keep relaxing                 (RELAX_TORQ_THR)
+
+t        Out ms_gold file fo Microstate selection           (MS_GOLD_OUT)
 
 step 3:
 80.0     Solvent dielectric constant for DelPhi             (EPSILON_SOLV)
@@ -142,6 +146,15 @@ f        Only the backbone                                  (ONLY_BACKBONE)
 f        Using mfe pK.out                                   (MFE_PKA)
 f        Specify mfe point, f=pKa/Em                        (MFE_POINT)
 -1.0     MFE cutoff(Kcal), default 0.5                      (MFE_CUTOFF)
+
+
+
+Step 6:
+f        Obtain hydrogen bond matrix                        (GET_HBOND_MATRIX)
+1.2      Lower limit of hydregen bond                       (HBOND_LOWER_LIMIT)
+3.2      Upper limit of hydregen bond                       (HBOND_UPPER_LIMIT)
+90.0     Angle cutoff of hydregen bond                      (HBOND_ANG_CUTOFF)
+f        Obtain hydrogen bond network                       (GET_HBOND_NETWORK)
 
 
 # Advanced options:

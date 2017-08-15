@@ -557,6 +557,7 @@ typedef struct {
     char do_energies;
     char do_monte;
     char do_postmcce;
+    char do_analysis;   /* Cai */
     
     char minimize_size;
     
@@ -631,7 +632,9 @@ typedef struct {
     float prune_rmsd;
     float prune_ele;
     float prune_vdw;
-    
+   
+    char  ms_gold_out;     //Cai
+ 
     float sas2vdw;
     
     char  reassign;
@@ -776,6 +779,13 @@ typedef struct {
     int  column_number;
     char  delphi_potential_exe[256];
     
+    // Step 6 variables---Cai
+    char get_hbond_matrix;
+    float hbond_upper_limit;
+    float hbond_lower_limit;
+    float hbond_ang_cutoff;
+    char get_hbond_network;
+ 
 } ENV;
 
 extern ENV env;
@@ -784,6 +794,7 @@ extern ENV env;
 ATOM   pdbline2atom(char *line);
 PROT   load_pdb(FILE *fp);
 int    write_pdb(FILE *stream, PROT prot);
+int    write_ms_gold(FILE *stream, PROT prot);            /* Add write_ms_gold.c  by Cai*/
 
 int    ins_conf(RES *res, int ins, int n_atom);
 int    del_conf(RES *res, int pos);
@@ -897,3 +908,4 @@ int monte();
 int monte2();
 int monte3();     /* monte_ms ---Cai  */
 int postrun();
+int analysis();   /* Cai */

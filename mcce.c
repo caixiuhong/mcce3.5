@@ -1,5 +1,8 @@
-#include <stdio.h>
+extern "C" {
 #include "mcce.h"
+}
+#include <stdio.h>
+//#include "mcce.h" 
 #include <time.h>
 
 void welcome();
@@ -86,6 +89,14 @@ int main(int argc, char *argv[])
    }
    else printf("Not doing \"Step 5. Post Monte Carlo\"\n\n");
 
+/* Add H bond analysis---Cai */
+   if (env.do_analysis){
+      printf("Step 6. Hydrogen Bond Network Analysis\n"); fflush(stdout);
+      if (analysis()) {db_close(); return USERERR;}
+      else printf("Step 6 Done.\n\n");
+   }
+   else printf("Not doing \"Step 6. Hydrogen Bond Network Analysis\"\n\n");
+
    db_close();
    return 0;
 }
@@ -129,6 +140,8 @@ void welcome()
    printf("Oct  2016, Added step 5 that creates pK.out and sum_crg.out.\n");
    printf("Jan  2017, Added DelPhi potential map.\n\n");
    printf("Mar  2017, Added DelPhi dielectric map.\n\n");
+   printf("July 2017, Added monte3.c to output MicroState at step 4.\n\n");    
+   printf("July 2017, Added step 6 to do Hydrogen Bond Network analysis.\n\n");
    fflush(stdout);
 	
 	// Added by Jessica on Nov. 2015
