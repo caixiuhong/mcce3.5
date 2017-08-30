@@ -67,7 +67,7 @@ t		ignore hydrogens in input structure					(IGNORE_INPUT_H)
 
 step 2:
 f        Use specific control (head1.lst) on rotamer making (ROT_SPECIF)
-t        Out ms_gold file fo Microstate selection           (MS_GOLD_OUT)
+t        Out ms_gold file for Microstate selection           (MS_GOLD_OUT)
 t        Do swap (stereo isotope)                           (ROT_SWAP)
 f        Do rotate?                                         (PACK)
 0        number of rotamers in a bond rotation              (ROTATIONS)
@@ -116,7 +116,7 @@ step 3:
 
 step 4:
 t        Using Yifan's monte carlo                          (MONTE_ADV_OPT)
-t        Output Microstate                                  (MONTE_MS)
+f        Output Microstate                                  (MONTE_MS)
 5.0      Big pairwise threshold to make big list            (BIG_PAIRWISE)
 -1       Random seed, -1 uses time as random seed           (MONTE_SEED)
 298.15   Temperature                                        (MONTE_T)
@@ -144,11 +144,11 @@ f        Specify mfe point, f=pKa/Em                        (MFE_POINT)
 
 
 Step 6:
-f        Obtain hydrogen bond matrix                        (GET_HBOND_MATRIX)
-1.2      Lower limit of hydregen bond                       (HBOND_LOWER_LIMIT)
-3.2      Upper limit of hydregen bond                       (HBOND_UPPER_LIMIT)
-90.0     Angle cutoff of hydregen bond                      (HBOND_ANG_CUTOFF)
-f        Obtain hydrogen bond network                       (GET_HBOND_NETWORK)
+t        Obtain hydrogen bond matrix                        (GET_HBOND_MATRIX)
+1.2      Lower limit of hydrogen bond H--B distance         (HBOND_LOWER_LIMIT)
+3.2      Upper limit of hydrogen bond H--B distance         (HBOND_UPPER_LIMIT)
+90.0     Angle cutoff of hydrogen bond                      (HBOND_ANG_CUTOFF)
+t        Obtain hydrogen bond network                       (GET_HBOND_NETWORK)
 
 
 

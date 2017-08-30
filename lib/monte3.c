@@ -240,11 +240,12 @@ int monte3()
         memset(&ms_spe_lst, 0, sizeof(STRINGS));
         ms_spe_lst.n = 0;
         if (load_ms_gold(&ms_spe_lst)) {
-            printf("Load file ms_gold error\n");
+            printf("   Load file ms_gold error: ms_gold file for Output Microstate (MONTE_MS) is missing. If you do not want microstates reported, turn (MONTE_MS) to f. If you do want microstate reported, include ms_gold file.\n");
+	    printf("   Formate of ms_gold:\n   GLUA0286\n   TYRA0288\n   THRA0288\n   Or formate of pdb file.\n");
             return USERERR;
         }
         if (ms_spe_lst.n == 0) {
-            printf("Load 0 ms gold residue, don't output ms_out\n");
+            printf("   Load 0 ms gold residue, don't output ms_out\n");
             env.ms_out = 0;
         }
         else {
@@ -273,7 +274,7 @@ int monte3()
         eh = env.titr_eh0;
         if (env.titr_type == 'p') ph = env.titr_ph0 + i*env.titr_phd;
         else eh = env.titr_eh0 + i*env.titr_ehd;
-        fprintf(fp, "pH = %6.2f Eh = %6.2f:\n", ph, eh); fflush(fp);
+        fprintf(fp, "   pH = %6.2f Eh = %6.2f:\n", ph, eh); fflush(fp);
        
         
         /* reduce prot to free residues, conformers fixed as 0 occ are excluded from this free residues */
@@ -2652,6 +2653,8 @@ int write_ms(MSRECORD *ms_state)
     fwrite(&ms_state->Hsq, 1, sizeof(double), ms_fp);
     fwrite(&ms_state->counter, 1, sizeof(int), ms_fp);
 //    printf("count %d\n", ms_state->counter);
+
+    return 0;
 }
 
 int update_conf_id(unsigned short *conf_id, int *state)

@@ -99,7 +99,7 @@ int hbond_matrix()
 	DNEAR=env.hbond_lower_limit;
         DFAR=env.hbond_upper_limit;
         ANGCUT=env.hbond_ang_cutoff;
-	printf("   Hydrogen Bond are created when distance is between %f and %f, angle is equal or larger than %f.\n", DNEAR, DFAR, ANGCUT);
+	printf("   Hydrogen Bond are created when distance is between %.3f and %.3f, angle is equal or larger than %f.\n", DNEAR, DFAR, ANGCUT);
 	FILE *fp;
 	PROT prot;
 	if (!(fp=fopen(STEP2_OUT, "r"))) {
@@ -226,9 +226,9 @@ int is_hb( CONF *conf1, CONF *conf2)
 //				}
 				for (iA=0; iA<Aatoms.n; iA++) {
 					param_get((char *) "IATOM", conf2->confName, Aatoms.strings[iA], &Aseq);
-//					d = ddvv(conf1->atom[Dseq].xyz, conf2->atom[Aseq].xyz);
+					d = ddvv(conf1->atom[Dseq].xyz, conf2->atom[Aseq].xyz);
 
-					d = ddvv(conf1->atom[Dseq].connect12[0]->xyz, conf2->atom[Aseq].xyz);  //*****
+//					d = ddvv(conf1->atom[Dseq].connect12[0]->xyz, conf2->atom[Aseq].xyz);  //*****
 					if (d > DNEAR * DNEAR && d < DFAR * DFAR) {
 						ang = avv(vector_vminusv((conf1->atom[Dseq].connect12[0])->xyz, conf1->atom[Dseq].xyz),
 								vector_vminusv(conf2->atom[Aseq].xyz, conf1->atom[Dseq].xyz)) * 180.0 / env.PI;
